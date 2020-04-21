@@ -7,8 +7,8 @@
 - $7.01
 
 ### avg stocks traded per day, median and mode
-- 291.0
-- 258.65
+- 291
+- 259
 
 ### avg correct predictions per day, median and mean
 - 95
