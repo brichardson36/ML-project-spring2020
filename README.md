@@ -21,3 +21,6 @@
 ### avg ratio of correct to total predictions per day, median and mean
 - 47 %
 - 48 %
+
+## Sources:
+http://cs229.stanford.edu/proj2012/ShahDaiZhong-AutomatedStockTradingUsingMachineLearningAlgorithms.pdf
