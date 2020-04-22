@@ -43,6 +43,10 @@ To allow for consistent forecasting, and to eliminate the impact of tiny discrep
 The buckets spanned from 9:30 AM to 4:00 PM, every business day. Each bucket was 1 minute long, and contained the opening, closing, high, and low price, as well as volume traded, for the bucket. The width of the buckets was minimized while ensuring every bucket had at least one data point.
 ### Feature Engineering
 This process created a slew of features for models. The data need to be processed again, however. This stems from Stationarity. Stationary data has a constant mean and standard deviation over a given time period [sources needed] (reference pure_price_kde figures). Forecasting non stationary data is unreliable [sources needed]. To create Stationary data, the difference between a bucket’s parameters and the previous bucket’s parameters was calculated. This difference for a given bucket was calculated for all 5 previous buckets to create more features. The difference data was stationary (reference diff_in_price_kde figures) and thus suitable as a set of parameters for forecasting models.
+
+![img](graphs/stationary_graphs/pure_price_kde_12)
+![img](graphs/stationary_graphs/diff_in_price_kde_12)
+
 ### Normalizing
 Data was normalized by subtracting the average of feature_n from each feature_n, and dividing the subsequent feature_n by the standard deviation of feature_n. This reduces scaling errors from features that have different units and scales. In this case, the scaling error between price and volume is reduced.
 ## Metrics
@@ -77,3 +81,86 @@ The ridge regression model and bot produced $7.01 dollars every day on average, 
 ## LSTM
 ### Reasoning
 LSTM neural networks are a form of recurrent neural network. Normal RNN's suffer from what is called short-term memory, where if a sequence is very long, information can be lost when carrying it from previous steps. Layers that get a small gradient update stop learning, usually earlier layers, RNN’s can forget what it seen in longer sequences, thus having a short-term memory. LSTM’s fix short-term memory by having internal mechanisms called gates that regulate the flow of information. These gates can learn which data in a sequence is important to keep or throw away. Thus, it can pass relevant information down the long chain of sequences to make predictions. A times series problem such as stock trading can occur over a very long segment of time and need a very long neural network to predict, so a LSTM is a very good approach to this problem.
+### Model Implementation
+LSTM will account for the relative importance of previous differences in prices. Each LSTM node was given 7 price differences as parameters, from a span of 7 bin’s price difference between each other. It was trained to predict price difference one timestep in the future. There were 256 hidden layers. Epochs ranged from 30 to 120 over various trials. The model was trained on a majority of the price data at the beginning of a day, and predicted the remaining price data during the rest of the day.
+### Bot implementation
+The trading bot took in parameters as listed above. When the model predicted a price difference one timestep in the future, it would buy a stock at the current price and sell at the next open price. Exiting positions immediately after buying again encourages the bot to be fully exited from all positions by the end of the day.
+### Results
+**Epochs - 50**
+avg stocks traded per day, median and mean
+79.5
+79.15
+avg profit per day, median and mean
+$0.27
+$0.26
+avg correct predictions per day, median and mean
+40.5
+39.8
+avg incorrect predictions per day, median and mean
+37.0
+39.4
+avg ratio of correct to total predictions per day, median and mean
+51.8%
+50.4%
+Even for 50 epochs, we see an immediate improvement in the ratio of correct predictions and consistency in profit. We also know that the bot has never leveraged more than the price of one stock, and thus is less risky compared to the regression bot.
+
+![img](LSTM_graphs\LSTM_ep-50_train-60percent\LSTM_profit_eod.png)
+![img](LSTM_graphs\LSTM_ep-50_train-60percent\LSTM_all.png)
+
+**Epochs - 80**
+avg stocks traded per day, median and mean
+82.0
+79.7
+avg profit per day, median and mean
+$0.317
+$0.338
+avg correct predictions per day, median and mean
+40.5
+41.25
+avg incorrect predictions per day, median and mean
+33.5
+38.45
+avg ratio of correct to total predictions per day, median and mean
+53.0%
+53.5%
+We see an increase in the profit and ratio of correct to total predictions with an increase in epochs.
+
+![img](LSTM_graphs\LSTM_ep-80_train-60percent\LSTM_profit_eod.png)
+![img](LSTM_graphs\LSTM_ep-80_train-60percent\LSTM_all.png)
+
+**Epochs - 120**
+avg stocks traded per day, median and mean
+76.0
+76.3
+avg profit per day, median and mean
+$0.204
+$0.339
+avg correct predictions per day, median and mean
+42.0
+40.0
+avg incorrect predictions per day, median and mean
+33.5
+36.3
+avg ratio of correct to total predictions per day, median and mean
+53.5%
+53.1%
+Increasing the epochs further sees diminishing returns on profit and correctness.
+
+![img](LSTM_graphs\LSTM_ep-120_train-60percent\LSTM_profit_eod.png)
+![img](LSTM_graphs\LSTM_ep-120_train-60percent\LSTM_all.png)
+
+# Conclusion and Furtherwork
+Analyzing time series data sets often asks for more complicated modelling implementations. Traditional regression techniques suffer from multi-colinearity, and even novel regressive techniques like ridge regression suffer from non-independence of timeseries data. Novel neural net techniques, such as LSTM, can be shown to be comparatively better predictors of complex time series data. As seen in the data above, LSTM models tend to produce similar results for predicting stock prices for a given day across all epochs. A future avenue of work could be deriving the hidden factors that hinder a LSTM model on a given day.
+
+## Sources
+[link](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)
+[link](https://scikit-learn.org/stable/)
+[link](http://cs229.stanford.edu/proj2016spr/report/049.pdf)
+[link](https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
+[link](https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db)
+[link](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf)
+[link](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+
+
+
+
