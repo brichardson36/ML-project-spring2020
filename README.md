@@ -31,7 +31,7 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-# Introdction
+# Introduction
 The evolutionary arms race of stock trading continually drives the development of new machine learning methods. What we propose to do, is to take an artificial neural network known as an LSTM (Long Short-Term Memory) and use it in lieu of traditional trading models.
 # Methods
 ## Stock Selection
@@ -72,4 +72,4 @@ avg ratio of correct to total predictions per day, median and mean
 47 %
 48 %
 The ridge regression model and bot produced $7.01 dollars every day on average, with no cap on how much money is invested at any given time. From the graphs we can see most of the change in profit came from two days. This implies that the model is not consistent. The model also correctly predicted prices only 48% of the time. Let’s see if we can do better - both more consistent, and more correct predictions.
-
+![img](Ridge_graphs/ridge_profit_eod.png)
