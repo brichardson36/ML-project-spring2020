@@ -20,6 +20,8 @@ Syntax highlighted code block
 
 1. Numbered
 2. List
+3. LSTM Neural Networks
+  - LSTM neural networks are a form of recurrent neural network.  Normal RNN's suffer from what is called short-term memory, where if a sequence is very long, information can be lost when carrying it from previous steps.  Layers that get a small gradient update stop learning, usually earlier layers, RNN’s can forget what it seen in longer sequences, thus having a short-term memory.  LSTM’s fix short-term memory by having internal mechanisms called gates that regulate the flow of information.  These gates can learn which data in a sequence is important to keep or throw away. Thus, it can pass relevant information down the long chain of sequences to make predictions.  A times series problem such as stock trading can occur over a very long segment of time and need a very long neural network to predict, so a LSTM is a very good approach to this problem.
 
 **Bold** and _Italic_ and `Code` text
 
