@@ -1,0 +1,15 @@
+avg stocks traded per day, median and mode
+82.0
+79.7
+avg profit per day, median and mode
+0.31674999999997056
+0.3379599999999847
+avg correct predictions per day, median and mean
+40.5
+41.25
+avg incorrect predictions per day, median and mean
+33.5
+38.45
+avg ratio of correct to total predictions per day, median and mean
+0.5297303271441203
+0.5353496122419673
