@@ -1,35 +1,4 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/brichardson36/ML-project-spring2020/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-
-
-**Bold** and _Italic_ and `Code` text
-
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+# LSTM 
 
 # Introduction
 The evolutionary arms race of stock trading continually drives the development of new machine learning methods. What we propose to do, is to take an artificial neural network known as an LSTM (Long Short-Term Memory) and use it in lieu of traditional trading models.
@@ -42,7 +11,7 @@ To allow for consistent forecasting, and to eliminate the impact of tiny discrep
 ### Bucket Description
 The buckets spanned from 9:30 AM to 4:00 PM, every business day. Each bucket was 1 minute long, and contained the opening, closing, high, and low price, as well as volume traded, for the bucket. The width of the buckets was minimized while ensuring every bucket had at least one data point.
 ### Feature Engineering
-This process created a slew of features for models. The data need to be processed again, however. This stems from Stationarity. Stationary data has a constant mean and standard deviation over a given time period [sources needed] (reference pure_price_kde figures). Forecasting non stationary data is unreliable [sources needed]. To create Stationary data, the difference between a bucket’s parameters and the previous bucket’s parameters was calculated. This difference for a given bucket was calculated for all 5 previous buckets to create more features. The difference data was stationary (reference diff_in_price_kde figures) and thus suitable as a set of parameters for forecasting models.
+This process created a slew of features for models. The data need to be processed again, however. This stems from Stationarity. Stationary data has a constant mean and standard deviation over a given time period. Forecasting non stationary data is unreliable. To create Stationary data, the difference between a bucket’s parameters and the previous bucket’s parameters was calculated. This difference for a given bucket was calculated for all 5 previous buckets to create more features. The difference data was stationary and thus suitable as a set of parameters for forecasting models.
 
 ![img](stationarity_graphs/pure_price_kde_12.png)
 ![img](stationarity_graphs/diff_in_price_kde_12.png)
@@ -61,20 +30,30 @@ In the model used here, the constant to add was found using scikit-learn’s aut
 The trading bot took in parameters as listed above. When the model predicted a price increase from the next open price to the subsequent open price, it would purchase one stock. When the model predicted a decrease in a similar fashion, it would sell all the stock. Selling all the stock increases the chance to be fully exited from one’s market position by the end of the day, and encourages the bot not to be forced to sell all the stock at a closing price.
 ### Results
 avg profit per day, median and mean
-$1.47
+<br/>
+$1.47, 
 $7.01
+<br/>
 avg stocks traded per day, median and mean
-291
+<br/>
+291, 
 259
+<br/>
 avg correct predictions per day, median and mean
-95
+<br/>
+95, 
 124
+<br/>
 avg incorrect predictions per day, median and mean
-161
+<br/>
+161, 
 134
+<br/>
 avg ratio of correct to total predictions per day, median and mean
-47 %
+<br/>
+47 %, 
 48 %
+<br/>
 The ridge regression model and bot produced $7.01 dollars every day on average, with no cap on how much money is invested at any given time. From the graphs we can see most of the change in profit came from two days. This implies that the model is not consistent. The model also correctly predicted prices only 48% of the time. Let’s see if we can do better - both more consistent, and more correct predictions.
 ![img](Ridge_graphs/ridge_profit_eod.png)
 ![img](Ridge_graphs/ridge_all.png)
@@ -88,20 +67,30 @@ The trading bot took in parameters as listed above. When the model predicted a p
 ### Results
 **Epochs - 50**
 avg stocks traded per day, median and mean
-79.5
+<br/>
+79.5, 
 79.15
+<br/>
 avg profit per day, median and mean
-$0.27
+<br/>
+$0.27, 
 $0.26
+<br/>
 avg correct predictions per day, median and mean
-40.5
+<br/>
+40.5, 
 39.8
+<br/>
 avg incorrect predictions per day, median and mean
-37.0
+<br/>
+37.0, 
 39.4
+<br/>
 avg ratio of correct to total predictions per day, median and mean
-51.8%
+<br/>
+51.8%, 
 50.4%
+<br/>
 Even for 50 epochs, we see an immediate improvement in the ratio of correct predictions and consistency in profit. We also know that the bot has never leveraged more than the price of one stock, and thus is less risky compared to the regression bot.
 
 ![img](LSTM_graphs/LSTM_ep-50_train-60percent/LSTM_profit_eod.png)
@@ -109,20 +98,30 @@ Even for 50 epochs, we see an immediate improvement in the ratio of correct pred
 
 **Epochs - 80**
 avg stocks traded per day, median and mean
-82.0
+<br/>
+82.0, 
 79.7
+<br/>
 avg profit per day, median and mean
-$0.317
+<br/>
+$0.317, 
 $0.338
+<br/>
 avg correct predictions per day, median and mean
-40.5
+<br/>
+40.5, 
 41.25
+<br/>
 avg incorrect predictions per day, median and mean
-33.5
+<br/>
+33.5, 
 38.45
+<br/>
 avg ratio of correct to total predictions per day, median and mean
-53.0%
+<br/>
+53.0%, 
 53.5%
+<br/>
 We see an increase in the profit and ratio of correct to total predictions with an increase in epochs.
 
 ![img](LSTM_graphs/LSTM_ep-80_train-60percent/LSTM_profit_eod.png)
@@ -131,20 +130,30 @@ We see an increase in the profit and ratio of correct to total predictions with 
 **Epochs - 120** 
 <br/>
 avg stocks traded per day, median and mean
-76.0
-76.3
+<br/>
+76.0, 
+76.3\
+<br/>
 avg profit per day, median and mean
-$0.204
+<br/>
+$0.204, 
 $0.339
+<br/>
 avg correct predictions per day, median and mean
-42.0
+<br/>
+42.0, 
 40.0
+<br/>
 avg incorrect predictions per day, median and mean
-33.5
+<br/>
+33.5, 
 36.3
+<br/>
 avg ratio of correct to total predictions per day, median and mean
-53.5%
+<br/>
+53.5%, 
 53.1%
+<br/>
 Increasing the epochs further sees diminishing returns on profit and correctness.
 
 ![img](LSTM_graphs/LSTM_ep-120_train-60percent/LSTM_profit_eod.png)
@@ -155,13 +164,15 @@ Analyzing time series data sets often asks for more complicated modelling implem
 
 ## Sources
 [https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)
+<br/>
 [https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
+<br/>
 [http://cs229.stanford.edu/proj2016spr/report/049.pdf](http://cs229.stanford.edu/proj2016spr/report/049.pdf)
+<br/>
 [lhttps://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322ink](https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
+<br/>
 [https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db](https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db)
+<br/>
 [https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf)
+<br/>
 [http://colah.github.io/posts/2015-08-Understanding-LSTMs/](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
-
-
-
-
