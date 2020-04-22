@@ -44,8 +44,8 @@ The buckets spanned from 9:30 AM to 4:00 PM, every business day. Each bucket was
 ### Feature Engineering
 This process created a slew of features for models. The data need to be processed again, however. This stems from Stationarity. Stationary data has a constant mean and standard deviation over a given time period [sources needed] (reference pure_price_kde figures). Forecasting non stationary data is unreliable [sources needed]. To create Stationary data, the difference between a bucket’s parameters and the previous bucket’s parameters was calculated. This difference for a given bucket was calculated for all 5 previous buckets to create more features. The difference data was stationary (reference diff_in_price_kde figures) and thus suitable as a set of parameters for forecasting models.
 
-![img](stationary_graphs/pure_price_kde_12.png)
-![img](stationary_graphs/diff_in_price_kde_12.png)
+![img](stationarity_graphs/pure_price_kde_12.png)
+![img](stationarity_graphs/diff_in_price_kde_12.png)
 
 ### Normalizing
 Data was normalized by subtracting the average of feature_n from each feature_n, and dividing the subsequent feature_n by the standard deviation of feature_n. This reduces scaling errors from features that have different units and scales. In this case, the scaling error between price and volume is reduced.
