@@ -104,8 +104,8 @@ avg ratio of correct to total predictions per day, median and mean
 50.4%
 Even for 50 epochs, we see an immediate improvement in the ratio of correct predictions and consistency in profit. We also know that the bot has never leveraged more than the price of one stock, and thus is less risky compared to the regression bot.
 
-![img](LSTM_graphs\LSTM_ep-50_train-60percent\LSTM_profit_eod.png)
-![img](LSTM_graphs\LSTM_ep-50_train-60percent\LSTM_all.png)
+![img](LSTM_graphs/LSTM_ep-50_train-60percent/LSTM_profit_eod.png)
+![img](LSTM_graphs/LSTM_ep-50_train-60percent/LSTM_all.png)
 
 **Epochs - 80**
 avg stocks traded per day, median and mean
@@ -125,8 +125,8 @@ avg ratio of correct to total predictions per day, median and mean
 53.5%
 We see an increase in the profit and ratio of correct to total predictions with an increase in epochs.
 
-![img](LSTM_graphs\LSTM_ep-80_train-60percent\LSTM_profit_eod.png)
-![img](LSTM_graphs\LSTM_ep-80_train-60percent\LSTM_all.png)
+![img](LSTM_graphs/LSTM_ep-80_train-60percent/LSTM_profit_eod.png)
+![img](LSTM_graphs/LSTM_ep-80_train-60percent/LSTM_all.png)
 
 **Epochs - 120**
 avg stocks traded per day, median and mean
@@ -146,20 +146,20 @@ avg ratio of correct to total predictions per day, median and mean
 53.1%
 Increasing the epochs further sees diminishing returns on profit and correctness.
 
-![img](LSTM_graphs\LSTM_ep-120_train-60percent\LSTM_profit_eod.png)
-![img](LSTM_graphs\LSTM_ep-120_train-60percent\LSTM_all.png)
+![img](LSTM_graphs/LSTM_ep-120_train-60percent/LSTM_profit_eod.png)
+![img](LSTM_graphs/LSTM_ep-120_train-60percent/LSTM_all.png)
 
 # Conclusion and Furtherwork
 Analyzing time series data sets often asks for more complicated modelling implementations. Traditional regression techniques suffer from multi-colinearity, and even novel regressive techniques like ridge regression suffer from non-independence of timeseries data. Novel neural net techniques, such as LSTM, can be shown to be comparatively better predictors of complex time series data. As seen in the data above, LSTM models tend to produce similar results for predicting stock prices for a given day across all epochs. A future avenue of work could be deriving the hidden factors that hinder a LSTM model on a given day.
 
 ## Sources
-[link](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)
-[link](https://scikit-learn.org/stable/)
-[link](http://cs229.stanford.edu/proj2016spr/report/049.pdf)
-[link](https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
-[link](https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db)
-[link](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf)
-[link](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+[https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/](https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/nyse-trade-and-quote-taq/)
+[https://scikit-learn.org/stable/](https://scikit-learn.org/stable/)
+[http://cs229.stanford.edu/proj2016spr/report/049.pdf](http://cs229.stanford.edu/proj2016spr/report/049.pdf)
+[lhttps://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322ink](https://towardsdatascience.com/stationarity-in-time-series-analysis-90c94f27322)
+[https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db](https://towardsdatascience.com/ridge-regression-for-better-usage-2f19b3a202db)
+[https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf](https://ncss-wpengine.netdna-ssl.com/wp-content/themes/ncss/pdf/Procedures/NCSS/Ridge_Regression.pdf)
+[http://colah.github.io/posts/2015-08-Understanding-LSTMs/](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
 
 
 
