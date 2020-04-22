@@ -1,4 +1,5 @@
-# LSTM 
+# Novel ML Trading
+### By Lachlan Suter, Brayden Richardson, Ford Lascari, Zach Hussin
 
 # Introduction
 The evolutionary arms race of stock trading continually drives the development of new machine learning methods. What we propose to do, is to take an artificial neural network known as an LSTM (Long Short-Term Memory) and use it in lieu of traditional trading models.
