@@ -73,3 +73,7 @@ avg ratio of correct to total predictions per day, median and mean
 48 %
 The ridge regression model and bot produced $7.01 dollars every day on average, with no cap on how much money is invested at any given time. From the graphs we can see most of the change in profit came from two days. This implies that the model is not consistent. The model also correctly predicted prices only 48% of the time. Let’s see if we can do better - both more consistent, and more correct predictions.
 ![img](Ridge_graphs/ridge_profit_eod.png)
+![img](Ridge_graphs/ridge_all.png)
+## LSTM
+### Reasoning
+LSTM neural networks are a form of recurrent neural network. Normal RNN's suffer from what is called short-term memory, where if a sequence is very long, information can be lost when carrying it from previous steps. Layers that get a small gradient update stop learning, usually earlier layers, RNN’s can forget what it seen in longer sequences, thus having a short-term memory. LSTM’s fix short-term memory by having internal mechanisms called gates that regulate the flow of information. These gates can learn which data in a sequence is important to keep or throw away. Thus, it can pass relevant information down the long chain of sequences to make predictions. A times series problem such as stock trading can occur over a very long segment of time and need a very long neural network to predict, so a LSTM is a very good approach to this problem.
