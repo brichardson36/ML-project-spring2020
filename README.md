@@ -129,7 +129,7 @@ We see an increase in the profit and ratio of correct to total predictions with 
 ![img](LSTM_graphs/LSTM_ep-80_train-60percent/LSTM_all.png)
 
 **Epochs - 120** 
-\\
+<br/>
 avg stocks traded per day, median and mean
 76.0
 76.3
